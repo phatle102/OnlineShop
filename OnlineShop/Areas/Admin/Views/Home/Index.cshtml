@@ -1,0 +1,37 @@
+﻿@model List<OnlineShop.Models.Product>
+
+
+<table width="80%" border="1" style="solid white;
+  border-collapse: collapse; background-color: #96D4D4;">
+
+    <tr>
+        <td>ID</td>
+        <td>Tên sản phẩm</td>
+        <td>Mô tả</td>
+        <td>Hình ảnh</td>
+        <td>Chức năng</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.IdProduct</td>
+            <td>@item.ProductName</td>
+            <td>@item.ProductInformation</td>
+            <td>
+                <img src="~/images/@item.ImgProduct" alt="" width="100px" height="100px">
+            </td>
+
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.IdProduct">
+                    Edit
+                </a>
+
+                <a asp-action="DeleteProduct" asp-route-id="@item.IdProduct">
+                    Delete
+                </a>
+            </td>
+
+        </tr>
+    }
+</table>
+
