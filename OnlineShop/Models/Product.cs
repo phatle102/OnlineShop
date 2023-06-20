@@ -23,6 +23,10 @@ public partial class Product
 
     public string? CategoryId { get; set; }
 
+    public string? ViewProduct1 { get; set; }
+
+    public string? ViewProduct2 { get; set; }
+
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();

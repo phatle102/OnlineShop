@@ -26,15 +26,7 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            if (HttpContext.Session.GetString("Username") == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
+            return View();
         }
 
     }

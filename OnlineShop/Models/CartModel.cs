@@ -14,6 +14,16 @@
             }
             return t;
         }
+
+        public decimal getTotalMoney()
+        {
+            decimal t = 0;
+            foreach(var it in _items)
+            {
+                t = t + it.totalMoney;
+            }
+            return t;
+        }
         public int addItem(Item item)
         {
             foreach (var it in _items)
@@ -22,6 +32,7 @@
                 {
                     it.Quantity += item.Quantity;
                     it.lineTotal = it.Quantity * it.Price;
+                    it.totalMoney += item.lineTotal;
                     return _items.Count;
                 }
             }
@@ -32,9 +43,34 @@
             foreach (var it in _items)
             {
                 Total += it.lineTotal;
+                Total += it.totalMoney;
             }
             return _items.Count;
         }
+
+        public int removeItem(Item item)
+        {
+            foreach (var it in _items)
+            {
+                if (it.Id == item.Id)
+                {
+                    it.Quantity -= item.Quantity;
+                    it.lineTotal -= item.lineTotal;
+                    return _items.Count;
+
+                }
+            }
+
+            _items.Remove(item);
+            Total = 0;
+            foreach (var it in _items)
+            {
+                Total -= it.lineTotal;
+                Total -= it.totalMoney;
+            }
+            return _items.Count;
+        }
+
         public void UpdateQuantity(string id, int qty, string btnCmd)
         {
             foreach (Item it in _items)

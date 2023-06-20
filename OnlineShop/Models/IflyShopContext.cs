@@ -179,12 +179,18 @@ public partial class IflyShopContext : DbContext
             entity.Property(e => e.Likes).HasColumnName("likes");
             entity.Property(e => e.ProductAmount).HasColumnName("productAmount");
             entity.Property(e => e.ProductInformation)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .HasColumnName("productInformation");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(50)
                 .HasColumnName("productName");
             entity.Property(e => e.Rating).HasColumnName("rating");
+            entity.Property(e => e.ViewProduct1)
+                .HasMaxLength(50)
+                .HasColumnName("viewProduct1");
+            entity.Property(e => e.ViewProduct2)
+                .HasMaxLength(50)
+                .HasColumnName("viewProduct2");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)

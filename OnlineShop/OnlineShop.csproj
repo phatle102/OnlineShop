@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Cart\Cart.cshtml~RF13873b77.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
     <None Include="wwwroot\images\Dell XPS 9530 2023 15 inch.jpg" />

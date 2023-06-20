@@ -11,10 +11,11 @@
                 <table id="shoppingCart" class="table table-condensed table-responsive">
                     <thead>
                         <tr>
+                            <th style="width:5%"></th>
                             <th style="width:60%">Product</th>
                             <th style="width:12%">Price</th>
                             <th style="width:12%">Quantity</th>
-                            <th style="width:18%">Status</th>
+                            <th style="width:12%">Status</th>
                             <th style="width:20%">Total</th>
                         </tr>
                     </thead>
@@ -24,13 +25,16 @@
                         <tbody>
                             <tr>
                                 <td data-th="Product">
+                                    <a class="remove" asp-action="removeFromCart" asp-controller="Cart" style="font-size: 15px; height: 10px; width: 10px">x</a>
+                                </td>
+                                <td data-th="Product">
                                     <div class="row">
                                         <div class="col-md-3 text-left">
-                                            <img src="~/images/@item.ImagePath" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                            <img src="~/images/@item.ImagePath" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow">
                                         </div>
                                         <div class="col-md-9 text-left mt-sm-2">
-                                            <h4>@item.Name</h4>
-                                            <p class="font-weight-light">@item.Description</p>
+                                            <h3>@item.Name</h3>
+                                            <h5>@item.Description</h5>
                                         </div>
                                     </div>
                                 </td>
@@ -39,37 +43,43 @@
                                     @using (Html.BeginForm("UpdateQuantity", "cart", FormMethod.Post))
                                     {
                                         @Html.HiddenFor(m=>item.Id)
-                                        <input type="submit" class="form-control form-control-lg text-center" value="1" name="btnUpdateQuantity">
+                                        <input type="number" class="form-control form-control-lg text-center" value="1" name="btnUpdateQuantity">
                                     }
                                  
                                 </td>
                                 <td class="actions" data-th="">
                                     <div class="text-right">
-                                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                            <i class="fas fa-sync"></i>
+                                        <button type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="+">
+                                            <i class="fas fa-sync">+</i>
                                         </button>
-                                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                            <i class="fas fa-trash"></i>
+                                        <button type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="-">
+                                            <i class="fas fa-trash">-</i>
                                         </button>
                                     </div>
                                 </td>
-                               
-                               
+
+                                <td>
+                                    <div class="float-right text-right">
+                                        <h4>Subtotal:</h4>
+                                        <h1>$ @item.lineTotal</h1>
+                                    </div>
+                                </td>
 
                             </tr>
                         </tbody>
                     }              
                 </table>
-                @foreach(var item in Model.getAllItems())
-                {
-                    <td>
-                        <div class="float-right text-right">
-                                            <h4>Subtotal:</h4>
-                                            <h1>$ @item.lineTotal</h1>
-                                        </div>
-                                    </td>
-                                 
-                }
+
+                <td>
+                    <div class="float-right text-right">
+                        <h4>Total Money:</h4>
+                        <h1>$ @Model.getTotalMoney()</h1>
+                    </div>
+                </td>
+                
+
+
+
             </div>
         </div>
         <div class="row mt-4 d-flex align-items-center">
@@ -84,3 +94,4 @@
         </div>
     </div>
 </section>
+

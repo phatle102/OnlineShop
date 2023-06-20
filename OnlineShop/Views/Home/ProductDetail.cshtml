@@ -5,8 +5,6 @@
     Layout = null;
 }
 
-
-
 <div class="main-wrapper">
     <div class="container">
         <div class="product-div">
@@ -15,9 +13,9 @@
                     <img src="~/images/@Model.ImgProduct" alt="watch">
                 </div>
                 <div class="hover-container">
-                    <div><img src="~/images/iphone-14-128gb-mautrang.jpg"></div>
-                    <div><img src="~/images/iphone-14-pro-max-1TB.jpg"></div>
-                    <div><img src="~/images/laptopgm.jpg"></div>
+                    <div><img src="~/images/@Model.ImgProduct"></div>
+                    <div><img src="~/images/@Model.ViewProduct1"></div>
+                    <div><img src="~/images/@Model.ViewProduct2"></div>
 
                 </div>
             </div>
@@ -25,35 +23,33 @@
                 <span class="product-name">@Model.ProductName</span>
                 <span class="product-price">$ @Model.Cost</span>
                 <div class="product-rating">
-                    <span>Lượt đánh giá: <span style="color: #FF9F00">  @Model.Rating</span></span>
+                    <span>Lượt đánh giá: <span style="color: #FF9F00"> @Model.Rating</span></span>
                 </div>
                 <p class="product-description">Thông tin sản phẩm: @Model.ProductInformation</p>
                 <div class="btn-groups">
                     <button type="button" class="add-cart-btn">
                         <a asp-action="addToCart" asp-controller="Cart" asp-route-id="@Model.IdProduct">
-                            <i class="fas fa-shopping-cart"></i>Add to cart
+                            <i class="fas fa-shopping-cart" style="height: 20px; width: 20px"></i>Add to cart
                         </a>
                     </button>
                     <button type="button" class="buy-now-btn"><i class="fas fa-wallet"></i>buy now</button>
                 </div>
             </div>
         </div>
+
+        <div>
+            <a class="btn-back" asp-action="Index" asp-controller="Home">
+                <i class="bi bi-arrow-left-short"></i> Back 
+            </a>
+        </div>
+
     </div>
 </div>
 
 <script src="script.js"></script>
 
 
-<div class="row mt-4 d-flex align-items-center">
-    <!--
-    <a asp-action="Edit" asp-route-id="@Model?.IdProduct">Edit</a> |-->
-    <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-                <a class="buy" asp-action="Index" asp-controller="Home">
-                    <i class="bi bi-arrow-left-short"></i> Back to list
-                </a>
-            </div>
 
-</div>
 
 <style>
   
@@ -161,6 +157,16 @@
         font-weight: 500;
     }
 
+    .btn-back{
+        color: #000;
+        background: #FF9F00;
+        border-radius: 10px;
+        border: 2px solid #FF9F00;
+         padding: 15px 16px;
+          align-items: center
+
+    }
+
     .product-rating {
         display: flex;
         margin-top: 12px;
@@ -195,13 +201,13 @@
         }
 
             .btn-groups button .fas {
-                margin-right: 8px;
+                align-items: center;
             }
 
     .add-cart-btn {
         background-color: #FF9F00;
         border: 2px solid #FF9F00;
-        margin-right: 8px;
+      align-items: center
     }
 
         .add-cart-btn:hover {
@@ -212,6 +218,7 @@
     .buy-now-btn {
         background-color: #000;
         border: 2px solid #000;
+        align-items: center
     }
 
         .buy-now-btn:hover {

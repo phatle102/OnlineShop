@@ -13,7 +13,7 @@ namespace OnlineShop.Controllers
         {
             _productRepository = productRepository;
         }
-    
+
 
         public IActionResult Cart()
         {
@@ -25,7 +25,7 @@ namespace OnlineShop.Controllers
                 cartModel.setAllItems(items);
             }
             return View(cartModel);
-          
+
         }
 
 
@@ -50,10 +50,11 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Cart");
         }
 
+
         public IActionResult addToCart(string id)
         {
-            
-            //fine product by id
+
+            //find product by id
             Product product = _productRepository.findByID(id);
             int quantity = 1;
             CartModel cartModel = null;
@@ -68,10 +69,12 @@ namespace OnlineShop.Controllers
                 {
                     Id = product.IdProduct,
                     Name = product.ProductName,
+                    Description = product.ProductInformation,
                     Price = (decimal)product.Cost,
                     ImagePath = product.ImgProduct,
                     Quantity = quantity,
-                    lineTotal = (decimal)(quantity * product.Cost)
+                    lineTotal = (decimal)(quantity * product.Cost),
+                    totalMoney = (decimal)(quantity * product.Cost)
                 };
                 //3
                 cartModel.addItem(item);
@@ -88,10 +91,12 @@ namespace OnlineShop.Controllers
                 {
                     Id = product.IdProduct,
                     Name = product.ProductName,
+                    Description = product.ProductInformation,
                     Price = (decimal)product.Cost,
                     ImagePath = product.ImgProduct,
                     Quantity = quantity,
-                    lineTotal = (decimal)(quantity * product.Cost)
+                    lineTotal = (decimal)(quantity * product.Cost),
+                    totalMoney = (decimal)(quantity * product.Cost)
                 };
                 //3
                 cartModel.addItem(item);
@@ -103,5 +108,63 @@ namespace OnlineShop.Controllers
             //code here */
             return RedirectToAction("Cart");
         }
+
+        public IActionResult removeFromCart(string id)
+        {
+            Product product = _productRepository.findByID(id);
+            CartModel cartModel = new CartModel();
+            if (HttpContext.Session.Get<List<Item>>("cart") != null)
+            {
+                //1
+                cartModel = new CartModel();
+                cartModel.CartId = HttpContext.Session.Id;
+                cartModel.setAllItems(HttpContext.Session.Get<List<Item>>("cart"));
+                //2
+                Item item = new Item()
+                {
+                    Id = product.IdProduct,
+                    Name = product.ProductName,
+                    Description = product.ProductInformation,
+                    Price = (decimal)product.Cost,
+                    ImagePath = product.ImgProduct,
+                };
+                //3
+                if(item != null)
+                {
+                    cartModel.removeItem(item);
+                }
+                
+                //4 save session
+                HttpContext.Session.Set<List<Item>>("cart", cartModel.getAllItems());
+            }
+            else
+            {
+                //the first
+                cartModel = new CartModel();
+                cartModel.CartId = HttpContext.Session.Id;
+
+                Item item = new Item()
+                {
+                    Id = product.IdProduct,
+                    Name = product.ProductName,
+                    Description = product.ProductInformation,
+                    Price = (decimal)product.Cost,
+                    ImagePath = product.ImgProduct,
+                };
+                //3
+                cartModel.removeItem(item);
+                //4
+                HttpContext.Session.Set<List<Item>>("cart", cartModel.getAllItems());
+            }
+
+            return RedirectToAction("Cart");
+        }
+
     }
+
+
+    
+
+
 }
+
