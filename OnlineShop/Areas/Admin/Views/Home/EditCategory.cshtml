@@ -1,7 +1,7 @@
 ﻿@model OnlineShop.Models.Category
 
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="EditCategory">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -25,5 +25,66 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
+
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="~/LayoutAdmin/style.css">
+
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="text">
+                Edit Category
+            </div>
+            <form asp-action="UpdateCategory">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-row">
+                    <div class="input-data">
+                        <input asp-for="CategoryId" type="text" />
+                        <div class="underline"></div>
+                        <label asp-for="CategoryId">Category Id</label>
+                    </div>
+                    <div class="input-data">
+                        <input asp-for="CategoryName" type="text">
+                        <div class="underline"></div>
+                        <label asp-for="CategoryName">Category Name</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data">
+                        <input asp-for="Description" type="text">
+                        <div class="underline"></div>
+                        <label asp-for="Description">Description</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data textarea">
+                        <textarea rows="8" cols="80" required=""></textarea>
+                        <br>
+                        <div class="underline"></div>
+                        <label for="">Write your message</label>
+                        <br>
+                        <div class="form-row submit-btn">
+                            <div class="input-data">
+                                <div class="inner"></div>
+                                <input type="submit" value="Save">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- partial -->
+                </div>
+            </form>
+            <div class="form-group">
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</body>

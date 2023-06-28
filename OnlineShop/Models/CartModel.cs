@@ -54,19 +54,8 @@
             {
                 if (it.Id == item.Id)
                 {
-                    it.Quantity -= item.Quantity;
-                    it.lineTotal -= item.lineTotal;
-                    return _items.Count;
-
+                    _items.Remove(item);
                 }
-            }
-
-            _items.Remove(item);
-            Total = 0;
-            foreach (var it in _items)
-            {
-                Total -= it.lineTotal;
-                Total -= it.totalMoney;
             }
             return _items.Count;
         }

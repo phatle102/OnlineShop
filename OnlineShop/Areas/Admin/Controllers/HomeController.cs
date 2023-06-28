@@ -54,6 +54,32 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View("CreateCategory", new Category());
         }
 
+        public IActionResult DeleteCategory(string id)
+        {
+            _categoryRepository.Delete(id);
+            return RedirectToAction("ViewAllCategories");
+        }
+
+        public IActionResult EditCategory(string id)
+        {
+            var q1 = from c in _categoryRepository.GetAllCategories()
+                     select new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+                     {
+                         Text = c.CategoryName,
+                         Value = c.CategoryId
+                     };
+            ViewBag.CategoryId = q1.ToList();
+            return View("EditCategory", _categoryRepository.findByID(id));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(Category category)
+        {
+            _categoryRepository.Update(category);
+            return RedirectToAction("ViewAllCategories");
+        }
+
+
 
         [HttpPost]
         public IActionResult SaveProduct(Product product)

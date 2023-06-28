@@ -31,6 +31,11 @@ namespace OnlineShop.Controllers
             return View("Product");
         }
 
+        public IActionResult Blog()
+        {
+            return View("Blog");
+        }
+
         public IActionResult Contact()
         {
             return View("Contact");

@@ -1643,13 +1643,26 @@ input[type="radio"] .styled:checked+label::after {
 ---------------------------------------------------------------------*/
 
 
+.account {
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 100%;
+	font-size: 18px;
+	display: flex;
+	float: right;
+	padding-top: 10px;
+}
+
+
 .buy {
-background: #ffc221;
-padding: 7px 41px !important;
-margin-top: 18px;
-border-radius: 5px;
-display: inline-block;
-float: right;
+	background: #ffc221;
+	padding: 7px 41px !important;
+	margin-top: 18px;
+	border-radius: 5px;
+	display: inline-block;
+	float: right;
 }
 
 .buy:hover {
@@ -1666,12 +1679,12 @@ justify-content: center;
 margin: 0 auto;
 float: left;
 }
-
 .top-box p {
 	float: right;
 	padding-top: 10px;
-    color: #000;
+	color: #000;
 }
+
 ul.sociel_link li {
 	display: inline-block;
 }
