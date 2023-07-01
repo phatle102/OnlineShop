@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using OnlineShop.Models;
 using OnlineShop.Repository;
+using OnlineShop.Data;
+using OnlineShop.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,24 @@ builder.Services.AddDbContext<IflyShopContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("IflyshopDB"));
 });
 
+builder.Services.AddDbContext<OnlineShopDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopDB"));
+});
 
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<OnlineShopDBContext>();
+
+
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+
+});
 //DI
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
@@ -30,7 +50,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();;
 app.UseAuthorization();
 
 //step 2
@@ -45,5 +65,7 @@ app.MapAreaControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
