@@ -171,7 +171,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public IActionResult Logout()
         {
             _signInManager.SignOutAsync();
-            return LocalRedirect("/home/login");
+            return LocalRedirect("/home/index");
         }
     }
 }

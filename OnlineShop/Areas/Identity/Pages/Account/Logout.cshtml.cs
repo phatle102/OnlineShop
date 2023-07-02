@@ -13,6 +13,7 @@ using OnlineShop.Areas.Identity.Data;
 
 namespace OnlineShop.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class LogoutModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

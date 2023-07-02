@@ -25,6 +25,7 @@ builder.Services.AddDbContext<OnlineShopDBContext>(options =>
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
     .AddEntityFrameworkStores<OnlineShopDBContext>();
 
 

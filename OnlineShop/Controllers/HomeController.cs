@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace OnlineShop.Controllers
 {
+
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,13 +19,14 @@ namespace OnlineShop.Controllers
         private ProductDAO productDAO = new ProductDAO();
         IflyShopContext db = new IflyShopContext();
         private readonly SignInManager<ApplicationUser> _signInManager;
-
+        
         public HomeController(ILogger<HomeController> logger, IProductRepository productRepository, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
             _productRepository = productRepository;
             _signInManager = signInManager;
         }
+
         [AllowAnonymous]
         public IActionResult Index()
         {
@@ -52,7 +55,7 @@ namespace OnlineShop.Controllers
             return View("About");
         }
 
-
+        [AllowAnonymous]
         public IActionResult ProductDetail(string Idproduct)
         {
             var product = db.Products.SingleOrDefault(x => x.IdProduct == Idproduct);

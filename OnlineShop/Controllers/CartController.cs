@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Models;
@@ -14,7 +15,12 @@ namespace OnlineShop.Controllers
             _productRepository = productRepository;
         }
 
+        public IActionResult Checkout()
+        {
+            return View("Checkout");
+        }
 
+        [AllowAnonymous]
         public IActionResult Cart()
         {
             ViewBag.sessionId = HttpContext.Session.Id;

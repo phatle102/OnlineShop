@@ -79,30 +79,25 @@
                                             @if (SignInManager.IsSignedIn(User))
                                             {
                                                 <span class="availability-status online"><p class="mb-1 text-black">@UserManager.GetUserName(User)</p> </span>
-
-                                            }
-                                           
+                                            }  
                                         </div>
              
                                     </a>
-                             
-                                    <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                                        <a class="dropdown-item" href="#">
-                                            Activity Log
-                                        </a>
-                                        <div class="dropdown-divider"> </div>
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                                            <a class="dropdown-item" href="#">
+                                                Activity Log
+                                            </a>
+                                            <div class="dropdown-divider"> </div>
                                             <a class="dropdown-item" href="/home/logout">
                                                 Signout
                                             </a>
-                                       
 
-                                    </div>
-                               
-                                   
-                                    
+                                        </div>
+                                    } 
                                   
                                </li>
-
                                 </ul>
                         </div>
                     </div>
@@ -128,21 +123,27 @@
                                         <li> <a href="product.html">product</a> </li>
                                         <li> <a asp-action="Blog" asp-controller="Home">Blog</a> </li>
                                         <li> <a asp-action="Contact" asp-controller="Home">Contact</a> </li>
-                                        @if(SignInManager.IsSignedIn(User)){
-                                             <li class="mean-last"> <a href="/Identity/Account/Register">Signup</a> </li>
+                                 
+                                        @if (!SignInManager.IsSignedIn(User))
+                                        {
+                                            <li class="mean-last"> <a href="/Identity/Account/Register">Signup</a> </li>
                                         }
+                                        
+                                        
                                        
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                     </div>
-                   
+                     @if (!SignInManager.IsSignedIn(User))
+                     {
+                    
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
                         <li> <a class="buy" href="/Identity/Account/Login">LOGIN</a></li>
    
                     </div>
-                
+                     }
                     
                     
                 </div>
