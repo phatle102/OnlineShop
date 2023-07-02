@@ -3,19 +3,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Models;
 using OnlineShop.Repository;
+using Microsoft.AspNetCore.Authorization;
+using OnlineShop.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;    
         private IProductRepository _productRepository;
         private ICategoryRepository _categoryRepository;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+
+        public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository, SignInManager<ApplicationUser> signInManager, ILogger<HomeController> logger)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _signInManager = signInManager;
+            _logger = logger;
         }
         public IActionResult Index()
         {
@@ -157,6 +166,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             List<Product> lst = _productRepository.GetAllProduct();
             return View("Index", lst);
+        }
+
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return LocalRedirect("/home/login");
         }
     }
 }

@@ -18,15 +18,20 @@ using OnlineShop.Areas.Identity.Data;
 
 namespace OnlineShop.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, UserManager<ApplicationUser> userManager)
         {
+
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -116,7 +121,7 @@ namespace OnlineShop.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect("~/admin/home/ViewAllCategories");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -138,4 +143,6 @@ namespace OnlineShop.Areas.Identity.Pages.Account
             return Page();
         }
     }
+
+
 }

@@ -15,6 +15,38 @@
     <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
     <None Include="wwwroot\images\Dell XPS 9530 2023 15 inch.jpg" />
     <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\LayoutAdmin\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\LayoutAdmin\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\LayoutAdmin\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\LayoutAdmin\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\LayoutAdmin\js\bootstrap.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\dataTables\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\dataTables\jquery.dataTables.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot-data.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\excanvas.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.colorhelpers.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.canvas.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.categories.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.crosshair.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.errorbars.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.fillbetween.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.image.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.navigate.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.pie.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.resize.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.selection.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.stack.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.symbol.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.threshold.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.time.js" />
+    <None Include="wwwroot\LayoutAdmin\js\flot\jquery.flot.tooltip.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\jquery.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\metisMenu.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\morris-data.js" />
+    <None Include="wwwroot\LayoutAdmin\js\morris.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\raphael.min.js" />
+    <None Include="wwwroot\LayoutAdmin\js\startmin.js" />
   </ItemGroup>
 
   <ItemGroup>
