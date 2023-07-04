@@ -48,16 +48,13 @@
             return _items.Count;
         }
 
-        public int removeItem(Item item)
+        public void removeItem(string id)
         {
-            foreach (var it in _items)
+            Item itemToRemove = _items.FirstOrDefault(item => item.Id == id);
+            if (itemToRemove != null)
             {
-                if (it.Id == item.Id)
-                {
-                    _items.Remove(item);
-                }
+                _items.Remove(itemToRemove);
             }
-            return _items.Count;
         }
 
         public void UpdateQuantity(string id, int qty, string btnCmd)

@@ -117,37 +117,23 @@ namespace OnlineShop.Controllers
 
         public IActionResult removeFromCart(string id)
         {
-            //find product by id
-            int quantity = 1;
-            Product product = _productRepository.findByID(id);
             CartModel cartModel = null;
             if (HttpContext.Session.Get<List<Item>>("cart") != null)
             {
                 cartModel = new CartModel();
                 cartModel.CartId = HttpContext.Session.Id;
                 cartModel.setAllItems(HttpContext.Session.Get<List<Item>>("cart"));
-
-                Item item = cartModel.getAllItems().SingleOrDefault(x => x.Id == id);
-                item = new Item();
-               
-                if (item != null)
-                {
-                    cartModel.removeItem(item);
-                    HttpContext.Session.Set<List<Item>>("cart", cartModel.getAllItems());
-                }
             }
-
+            cartModel.removeItem(id);
+            HttpContext.Session.Set<List<Item>>("cart", cartModel.getAllItems());
             return RedirectToAction("Cart");
+
         }
 
 
-        
+
+
 
     }
-
-
-    
-
-
 }
 

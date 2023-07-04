@@ -48,7 +48,8 @@ namespace OnlineShop.Controllers
 
         public IActionResult Product()
         {
-            return View("Product");
+            List<Product> lst = _productRepository.GetAllProduct();
+            return View(lst);
         }
 
         public IActionResult Blog()
