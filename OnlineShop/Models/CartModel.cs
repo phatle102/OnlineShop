@@ -66,15 +66,17 @@
             {
                 if (it.Id == id)
                 {
-                    if (btnCmd == "1")
+                    if (btnCmd == "+")
                     {
                         it.Quantity += qty;
                         it.lineTotal = it.Quantity * it.Price;
+                        it.totalMoney = it.Quantity * it.Price;
                     }
                     else
                     {
                         it.Quantity -= qty;
                         it.lineTotal = it.Quantity * it.Price;
+                        it.totalMoney = it.Quantity * it.Price;
                     }
 
                 }

@@ -42,19 +42,29 @@
                                 <td data-th="Quantity">
                                     @using (Html.BeginForm("UpdateQuantity", "cart", FormMethod.Post))
                                     {
-                                        @Html.HiddenFor(m=>item.Id)
-                                        <input type="number" class="form-control form-control-lg text-center" value="1" name="btnUpdateQuantity">
+                                        @Html.TextBoxFor(m=>@item.Quantity,"", new {@class="input-text qty text" , @type="number"} )
+                                        <input type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="+">
+
+
+                                        @Html.HiddenFor(m=>@item.Id)
+                                        <input type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="-">
                                     }
                                  
                                 </td>
                                 <td class="actions" data-th="">
                                     <div class="text-right">
-                                        <button type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="+">
-                                            <i class="fas fa-sync">+</i>
-                                        </button>
-                                        <button type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="-">
-                                            <i class="fas fa-trash">-</i>
-                                        </button>
+                                        @*@using (Html.BeginForm("UpdateQuantity", "cart", FormMethod.Post))
+                                        {
+                                            @Html.TextBoxFor(m=>@item.Quantity,"", new {@class="input-text qty text" , @type="number"} )
+                                            <input type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="+">
+                                
+
+                                            @Html.HiddenFor(m=>@item.Id)
+                                            <input type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2" name="btnUpdateQuantity" value="-">
+                           
+                                
+                                        }*@
+                                        
                                     </div>
                                 </td>
 
@@ -84,7 +94,7 @@
         </div>
         <div class="row mt-4 d-flex align-items-center">
             <div class="col-sm-6 order-md-2 text-right">
-                <a href="#" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+                <a asp-action="Checkout" asp-controller="cart" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
             </div>
             <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
                 <a asp-action="Index" asp-controller="Home">

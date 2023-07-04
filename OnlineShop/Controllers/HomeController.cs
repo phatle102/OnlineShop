@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using OnlineShop.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace OnlineShop.Controllers
 {
@@ -28,10 +29,20 @@ namespace OnlineShop.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            List<Product> products = _productRepository.GetAllProduct();
-            return View(products);
+            int pageNumber = page ?? 1;
+            int pageSize = 8; // Kích thước trang
+
+            List<Product> lst = _productRepository.GetAllProduct();
+
+            var pagedData = lst.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = lst.Count;
+
+            return View(pagedData.ToList());
         }
 
 
@@ -72,6 +83,9 @@ namespace OnlineShop.Controllers
             _signInManager.SignOutAsync();
             return LocalRedirect("/home/index");
         }
+
+       
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

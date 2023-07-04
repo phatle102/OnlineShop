@@ -140,22 +140,9 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Cart");
         }
 
+
         
-        /*public IActionResult ViewAllProducts(int? page)
-        {
-            int pageNumber = page ?? 1;
-            int pageSize = 1; // Kích thước trang
 
-            List<Product> lst = _productRepository.GetAllProduct();
-
-            var pagedData = lst.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-
-            ViewBag.PageNumber = pageNumber;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalItems = lst.Count;
-
-            return View(pagedData.ToList());
-        }*/
     }
 
 

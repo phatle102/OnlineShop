@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using OnlineShop.Models;
 using OnlineShop.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -49,7 +47,6 @@ namespace OnlineShop.Areas.Admin.Controllers
                     _categoryRepository.Create(category);
                     return RedirectToAction("ViewAllCategories");
                 }
-
             }
             else
             {
@@ -88,8 +85,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("ViewAllCategories");
         }
 
-
-
         [HttpPost]
         public IActionResult SaveProduct(Product product)
         {
@@ -107,14 +102,12 @@ namespace OnlineShop.Areas.Admin.Controllers
                     _productRepository.Create(product);
                     return RedirectToAction("Index");
                 }
-
             }
             else
             {
                 return View("CreateProduct");
             }
         }
-      
 
         [HttpGet]
         public IActionResult CreateProduct()
